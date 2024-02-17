@@ -1,0 +1,49 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.ktemesi.midilooper'
+    compileSdk rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.ktemesi.midilooper"
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ''
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+        }
+    }
+}
+
+dependencies {
+    //  implementation 'androidx.appcompat:appcompat-resources:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.activity:activity:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    //  implementation 'androidx.preference:preference:1.2.1'
+    //  implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.legacy:legacy-support-v4:' + rootProject.ext.androidxLegacySupportVersion
+    implementation project(path: ':PdCore')
+} 

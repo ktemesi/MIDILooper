@@ -1,2 +1,2 @@
 # MIDILooper
-Android app with MIDI looper functionality
+Android app with MIDI looper functionality (beta)
